@@ -27,3 +27,22 @@ const images = [
     alt: 'Zebras on Zebra',
   },
 ];
+const galleryList = document.querySelector('.gallery');
+
+// Створення фрагмента для оптимізації одноразового додавання в DOM
+const fragment = document.createDocumentFragment();
+
+// Створення та додавання елементів галереї до фрагмента
+images.forEach((image) => {
+  const listItem = document.createElement('li');
+  const imageElement = document.createElement('img');
+
+  imageElement.src = image.url;
+  imageElement.alt = image.alt;
+
+  listItem.appendChild(imageElement);
+  fragment.appendChild(listItem);
+});
+
+// Додавання всіх елементів галереї до DOM
+galleryList.appendChild(fragment);
